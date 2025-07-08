@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Linguava Bot</title>
+</head>
+<body>
+  <h1>Welcome to Linguava!</h1>
+  <p>Start chatting with our language learning assistant below 👇</p>
+
+  <script>
+    window.watsonAssistantChatOptions = {
+        integrationID: "939d047e-3175-4c10-b598-d8db0b82baf6", // your integration ID
+        region: "us-south", // your region
+        serviceInstanceID: "3e9498a9-924b-4f71-831c-0522f2be3709", // your service ID
+        onLoad: function(instance) { instance.render(); }
+    };
+    setTimeout(function(){
+      const t = document.createElement('script');
+      t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
+      document.head.appendChild(t);
+    });
+  </script>
+</body>
+</html>
