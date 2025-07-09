@@ -2,24 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Linguava Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Linguava - Learn with Fun</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      height: 100vh;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee, #d7e1ec, #fcefee);
+      background-size: 400% 400%;
+      animation: pastelFlow 12s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes pastelFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .logo h1 {
+      font-size: 28px;
+      background: linear-gradient(to right, #9999e7, #59c3c3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .language-selector {
+      font-size: 16px;
+      color: #444;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .hero h2 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    #watson-chat {
+      width: 100%;
+      max-width: 800px;
+      height: 600px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to Linguava!</h1>
-  <p>Start chatting with our language learning assistant below 👇</p>
+
+  <header>
+    <div class="logo">
+      <img src="https://i.postimg.cc/g0bvthF7/lingava.png" alt="Linguava Logo">
+      <h1>Linguava</h1>
+    </div>
+    <div class="language-selector">SITE LANGUAGE: ENGLISH</div>
+  </header>
+
+  <div class="hero">
+    <h2>Hi! I’m Linguava 🐦</h2>
+    <p>Your friendly language-learning assistant</p>
+  </div>
+
+  <div id="watson-chat"></div>
 
   <script>
     window.watsonAssistantChatOptions = {
-        integrationID: "939d047e-3175-4c10-b598-d8db0b82baf6", // your integration ID
-        region: "us-south", // your region
-        serviceInstanceID: "3e9498a9-924b-4f71-831c-0522f2be3709", // your service ID
-        onLoad: function(instance) { instance.render(); }
+      integrationID: "939d047e-3175-4c10-b598-d8db0b82baf6",
+      region: "us-south",
+      serviceInstanceID: "3e9498a9-924b-4f71-831c-0522f2be3709",
+      element: document.getElementById("watson-chat"),
+      showLauncher: false,
+      onLoad: function(instance) {
+        instance.render().then(function() {
+          instance.updateCSSVariables({
+            '--max-width': '100%',
+            '--min-height': '600px'
+          });
+        });
+      }
     };
-    setTimeout(function(){
+    setTimeout(function () {
       const t = document.createElement('script');
       t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/latest/WatsonAssistantChatEntry.js";
       document.head.appendChild(t);
     });
   </script>
+
 </body>
 </html>
